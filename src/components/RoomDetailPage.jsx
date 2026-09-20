@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowRight, Snowflake, ShowerHead, Flame, Box, Wifi } from 'lucide-react';
+import { ArrowRight, Snowflake, ShowerHead, Wifi, Car, Utensils, WashingMachine } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { roomsData } from '../data/rooms';
@@ -10,15 +10,21 @@ import { useBookingModal } from '../context/BookingContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const commonAmenities = [
+  { name: "Kitchen", icon: <Utensils /> },
+  { name: "Car Parking", icon: <Car /> },
+  { name: "Washing Machine", icon: <WashingMachine /> },
+  { name: "Wi-Fi", icon: <Wifi /> },
+  { name: "Attached Bathroom", icon: <ShowerHead /> },
+  { name: "Air Conditioning", icon: <Snowflake /> }
+];
+
 const RoomDetailPage = ({ roomId }) => {
   const room = roomsData.find(r => r.id === roomId);
   const otherRoomId = roomId === 'room-01' ? 'room-02' : 'room-01';
   const otherRoom = roomsData.find(r => r.id === otherRoomId);
 
-  // The amenity data will be provided later.
-  // For now, it remains empty so no incorrect amenities are shown.
-  // The structure should be: { name: "Amenity Name", icon: <LucideIcon className={styles.amenityIcon} /> }
-  const roomAmenities = room.amenities || [];
+  const roomAmenities = commonAmenities;
 
   const pageRef = useRef(null);
   const infoRef = useRef(null);
