@@ -1,0 +1,331 @@
+.section {
+  background-color: var(--color-cream);
+  border-top-left-radius: 48px;
+  border-top-right-radius: 48px;
+  box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+  padding-top: 130px;
+  padding-bottom: 100px;
+  overflow-x: hidden; /* Prevent page-level overflow */
+}
+
+.decorativeWord {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(100px, 20vw, 300px);
+  font-weight: 900;
+  color: var(--color-navy);
+  opacity: 0.02;
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  z-index: 0;
+}
+
+.header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(36, 35, 31, 0.7);
+  border: 1px solid rgba(36, 35, 31, 0.15);
+  border-radius: 999px;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+}
+
+.heading {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 600;
+  color: #24231F;
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headingLine {
+  display: block;
+}
+
+/* CAROUSEL */
+.carouselViewport {
+  width: 100%;
+  padding: 16px 0; 
+  margin: -16px 0;
+}
+
+.carouselTrack {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.carouselSet {
+  display: flex;
+  gap: 28px;
+}
+
+.duplicateSet {
+  display: none !important;
+}
+
+/* For reduced motion on mobile, we will handle it in the media query */
+
+.card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background-color: var(--color-navy);
+  
+  /* Desktop sizing */
+  width: 440px;
+  height: 320px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cardImageSlot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(1.05); 
+  animation: settleImage 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes settleImage {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.0); }
+}
+
+.card:hover .cardImageSlot {
+  transform: scale(1.04);
+  animation: none;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0) 60%);
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.card:hover .imageOverlay {
+  opacity: 0.9;
+}
+
+.cardContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.detailPill {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-white);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: var(--color-white);
+}
+
+.roomName {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--color-white);
+}
+
+.roomDesc {
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.4;
+  max-width: 80%;
+}
+
+.arrowBtn {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  pointer-events: auto;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.card:hover .arrowBtn {
+  transform: scale(1.05);
+}
+
+/* MARQUEE ANIMATION */
+@keyframes roomsMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* BOTTOM CTA */
+.bottomCtaContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.viewOurRoomsBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: #24231F;
+  background: transparent;
+  border: 1px solid rgba(36, 35, 31, 0.15);
+  border-radius: 999px;
+  padding: 8px 10px 8px 24px;
+  height: 58px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.viewOurRoomsBtn:hover {
+  background: rgba(36, 35, 31, 0.03);
+}
+
+.ctaCircle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-navy);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+  transition: transform 0.3s ease;
+}
+
+.viewOurRoomsBtn:hover .ctaCircle {
+  transform: rotate(15deg) scale(1.05);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  /* No special heading max-width needed since it's flex centered now */
+}
+
+@media (max-width: 768px) {
+  .section {
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+  
+  .header {
+    margin-bottom: 32px;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 100%;
+  }
+  
+  .heading {
+    align-items: flex-start;
+    font-size: clamp(28px, 8vw, 36px);
+  }
+
+  .carouselViewport {
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  .carouselTrack {
+    justify-content: flex-start;
+    width: max-content;
+    will-change: transform;
+    animation: roomsMarquee 28s linear infinite !important;
+    gap: 0;
+  }
+  
+  .carouselSet {
+    padding-right: 16px;
+    gap: 16px;
+  }
+  
+  .duplicateSet {
+    display: flex !important;
+  }
+  
+  .card {
+    width: calc(100vw - 40px);
+    height: 320px;
+    max-width: 100%;
+  }
+  
+  .bottomCtaContainer {
+    margin-top: 32px;
+  }
+  
+  .viewOurRoomsBtn {
+    height: 54px;
+    padding: 6px 8px 6px 20px;
+  }
+  
+  .ctaCircle {
+    width: 40px;
+    height: 40px;
+  }
+}

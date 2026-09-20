@@ -1,0 +1,75 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menuContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 85%;
+  max-width: 400px;
+  background-color: var(--color-cream);
+  z-index: 1001;
+  transform: translateX(100%);
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.logo {
+  color: var(--color-navy);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+}
+
+.closeBtn {
+  color: var(--color-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  margin-right: -8px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex-grow: 1;
+}
+
+.link {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-navy);
+  text-decoration: none;
+  opacity: 0; /* Animated by GSAP */
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.bookBtn {
+  width: 100%;
+  padding: 16px !important;
+  font-size: 16px !important;
+}

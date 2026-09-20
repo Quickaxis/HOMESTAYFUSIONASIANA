@@ -1,0 +1,355 @@
+.section {
+  background-color: var(--color-cream);
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Very subtle dotted paper grid */
+  background-image: radial-gradient(rgba(36, 35, 31, 0.05) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* BACKGROUND SVGS */
+.topRoute {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  max-width: 1600px;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.15;
+  color: rgba(36, 35, 31, 0.8);
+}
+
+.bottomRoute {
+  position: absolute;
+  bottom: 0px;
+  right: -5%;
+  width: 60%;
+  max-width: 800px;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.15;
+  color: rgba(36, 35, 31, 0.8);
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: clamp(32px, 4vw, 48px);
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-navy);
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+/* DIVIDERS */
+.dashedDivider {
+  width: 85%;
+  margin: 0 auto;
+  border-top: 1.5px dashed rgba(36, 35, 31, 0.15);
+  position: relative;
+  z-index: 2;
+}
+
+/* STATS */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin: 48px auto;
+  max-width: 960px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statValue {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-orange);
+  margin-bottom: 6px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.statLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(36, 35, 31, 0.6);
+}
+
+/* FEATURES DESKTOP */
+.featuresRowDesktop {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 64px;
+  position: relative;
+  z-index: 2;
+}
+
+.featureCard {
+  background: var(--color-white);
+  border: 1px solid rgba(36,35,31,0.06);
+  border-radius: 12px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.iconContainer {
+  width: 44px;
+  height: 44px;
+  background: var(--color-cream);
+  border: 1px solid rgba(36,35,31,0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  color: var(--color-navy);
+}
+
+.iconContainer svg {
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+}
+
+.featureCard h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.featureCard p {
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .dashedDivider {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+  
+  .header {
+    margin-bottom: 32px;
+  }
+  
+  .heading {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+  
+  .statsRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 16px;
+    margin: 32px auto;
+  }
+  
+  .statItem {
+    min-width: 0;
+  }
+  
+  .statValue {
+    font-size: 28px;
+    word-break: break-word;
+  }
+  
+  .statLabel {
+    font-size: 10px;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+  
+  .featuresRowDesktop {
+    display: none;
+  }
+  
+  .carouselContainer {
+    width: 100%;
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .carouselViewport {
+    overflow: hidden;
+    width: 100%;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .carouselTrack {
+    display: flex;
+    width: 100%;
+    will-change: transform;
+  }
+
+  .carouselSlide {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .featureCardMobile {
+    background: var(--color-white);
+    border: 1px solid rgba(36,35,31,0.06);
+    border-radius: 12px;
+    padding: 32px 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    width: 100%;
+    text-align: left;
+  }
+  
+  .featureCardMobile .iconContainer {
+    width: 44px;
+    height: 44px;
+    background: var(--color-cream);
+    border: 1px solid rgba(36,35,31,0.08);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    color: var(--color-navy);
+  }
+  
+  .featureCardMobile .iconContainer svg {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+  }
+  
+  .featureCardMobile h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .featureCardMobile p {
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+  
+  .carouselControls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  
+  .arrowBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(36, 35, 31, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-navy);
+    transition: all 0.3s ease;
+  }
+  
+  .arrowBtn:hover {
+    background: var(--color-white);
+  }
+  
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(36,35,31,0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .dotActive {
+    width: 20px;
+    background: var(--color-navy);
+    border-radius: 4px;
+  }
+  
+  .dashedDivider {
+    width: 100%;
+  }
+  
+  .topRoute {
+    width: 180%;
+    top: 20px;
+  }
+}
