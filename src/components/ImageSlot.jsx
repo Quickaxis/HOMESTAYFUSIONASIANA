@@ -35,20 +35,20 @@ const ImageSlot = ({
   };
 
   const imageMap = {
-    'room-01': '/images/pinkroom1.png',
-    'room-01-image-01': '/images/pinkroom1.png',
-    'room-01-image-02': '/images/pinkroom2.png',
-    'room-01-image-03': '/images/pinkroom3.png',
-    'room-01-image-04': '/images/pinkroom4.png',
-    'room-02': '/images/luxuryroom1.png',
-    'room-02-image-01': '/images/luxuryroom1.png',
-    'room-02-image-02': '/images/luxuryroom2.png',
-    'room-02-image-03': '/images/luxuryroom3.png',
-    'room-02-image-04': '/images/luxuryroom4.png',
-    'room-02-image-05': '/images/luxuryroom5.png',
-    'review-01': '/images/reveiew1.png',
-    'review-02': '/images/reveiew2.png',
-    'review-03': '/images/reveiew3.png'
+    'room-01': '/images/pinkroom1.webp',
+    'room-01-image-01': '/images/pinkroom1.webp',
+    'room-01-image-02': '/images/pinkroom2.webp',
+    'room-01-image-03': '/images/pinkroom3.webp',
+    'room-01-image-04': '/images/pinkroom4.webp',
+    'room-02': '/images/luxuryroom1.webp',
+    'room-02-image-01': '/images/luxuryroom1.webp',
+    'room-02-image-02': '/images/luxuryroom2.webp',
+    'room-02-image-03': '/images/luxuryroom3.webp',
+    'room-02-image-04': '/images/luxuryroom4.webp',
+    'room-02-image-05': '/images/luxuryroom5.webp',
+    'review-01': '/images/reveiew1.webp',
+    'review-02': '/images/reveiew2.webp',
+    'review-03': '/images/reveiew3.webp'
   };
 
   const finalSrc = src || imageMap[id] || '';

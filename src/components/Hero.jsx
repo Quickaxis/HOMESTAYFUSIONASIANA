@@ -19,9 +19,9 @@ const Hero = () => {
     <section id="home" className={styles.heroSection}>
       <div className={styles.imageWrapper} data-hero-image>
         <picture>
-          <source media="(max-width: 768px)" srcSet="/images/heromobile.png" />
+          <source media="(max-width: 768px)" srcSet="/images/heromobile.webp" />
           <img 
-            src="/images/heropc.png" 
+            src="/images/heropc.webp" 
             alt="Fusion Asiana in Chowkidingee, Dibrugarh" 
             className={styles.heroImage}
             fetchpriority="high"
