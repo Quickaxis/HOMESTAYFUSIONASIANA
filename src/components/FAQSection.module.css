@@ -38,11 +38,18 @@
   border: 1px solid var(--color-navy);
   color: var(--color-navy);
   background-color: transparent;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .outlineBtn:hover {
   background-color: rgba(23, 63, 122, 0.05);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(23, 63, 122, 0.06);
+}
+
+.outlineBtn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px rgba(23, 63, 122, 0.04);
 }
 
 .rightCol {
@@ -133,3 +140,4 @@
     padding: 20px;
   }
 }
+@media (prefers-reduced-motion: reduce) { .outlineBtn { transition: none !important; } .outlineBtn:hover { transform: none !important; } .outlineBtn:active { transform: none !important; } }

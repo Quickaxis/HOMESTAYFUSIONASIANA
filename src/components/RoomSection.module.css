@@ -237,12 +237,20 @@
   border-radius: 999px;
   padding: 8px 10px 8px 24px;
   height: 58px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   white-space: nowrap;
 }
 
 .viewOurRoomsBtn:hover {
-  background: rgba(36, 35, 31, 0.03);
+  background: var(--color-white);
+  border-color: rgba(36, 35, 31, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.viewOurRoomsBtn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .ctaCircle {
@@ -255,11 +263,11 @@
   align-items: center;
   justify-content: center;
   margin-left: 20px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .viewOurRoomsBtn:hover .ctaCircle {
-  transform: rotate(15deg) scale(1.05);
+  transform: translateX(4px);
 }
 
 /* RESPONSIVE */
@@ -329,3 +337,4 @@
     height: 40px;
   }
 }
+@media (prefers-reduced-motion: reduce) { .viewOurRoomsBtn, .ctaCircle { transition: none !important; transform: none !important; } .viewOurRoomsBtn:hover { transform: none !important; } .viewOurRoomsBtn:active { transform: none !important; } .viewOurRoomsBtn:hover .ctaCircle { transform: none !important; } }

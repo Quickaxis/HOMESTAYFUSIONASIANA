@@ -246,6 +246,18 @@
   color: var(--color-text);
 }
 
+.inputError {
+  border-color: #E24949 !important;
+  background-color: #FFF9F9 !important;
+}
+
+.errorText {
+  color: #E24949;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: -2px;
+}
+
 /* RESPONSIVE DESIGN - STRICT MOBILE CONSTRAINTS */
 @media (max-width: 992px) {
   .grid {

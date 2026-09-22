@@ -16,6 +16,8 @@ import OtherBusinesses from './components/OtherBusinesses';
 import Footer from './components/Footer';
 import RoomDetailPage from './components/RoomDetailPage';
 import RoomsListPage from './components/RoomsListPage';
+import AboutPage from './components/AboutPage';
+import NearbyPlacesPage from './components/NearbyPlacesPage';
 import { BookingProvider } from './context/BookingContext';
 import BookYourStayModal from './components/BookYourStayModal';
 
@@ -66,6 +68,8 @@ function App() {
 
   const isRoomDetailPage = currentPath.startsWith('/rooms/') && currentPath.length > 7;
   const isRoomsListPage = currentPath === '/rooms' || currentPath === '/rooms/';
+  const isAboutPage = currentPath === '/about' || currentPath === '/about/';
+  const isNearbyPlacesPage = currentPath === '/nearby-places' || currentPath === '/nearby-places/';
   const isContactPage = currentPath === '/contact' || currentPath === '/contact/';
   const roomId = isRoomDetailPage ? currentPath.split('/').pop() : null;
 
@@ -74,13 +78,17 @@ function App() {
       <div className="texture-bg"></div>
       <Navbar />
       
-      {(!isRoomDetailPage && !isRoomsListPage && !isContactPage) && <Hero />}
+      {(!isRoomDetailPage && !isRoomsListPage && !isContactPage && !isAboutPage && !isNearbyPlacesPage) && <Hero />}
       
-      <main className={`content-layer ${(!isRoomDetailPage && !isRoomsListPage && !isContactPage) ? 'homepage-layer' : ''}`}>
+      <main className={`content-layer ${(!isRoomDetailPage && !isRoomsListPage && !isContactPage && !isAboutPage && !isNearbyPlacesPage) ? 'homepage-layer' : ''}`}>
         {isRoomDetailPage ? (
           <RoomDetailPage roomId={roomId} />
         ) : isRoomsListPage ? (
           <RoomsListPage />
+        ) : isAboutPage ? (
+          <AboutPage />
+        ) : isNearbyPlacesPage ? (
+          <NearbyPlacesPage />
         ) : isContactPage ? (
           <ContactPage />
         ) : (

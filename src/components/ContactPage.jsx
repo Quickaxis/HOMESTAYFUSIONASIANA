@@ -9,18 +9,43 @@ const ContactPage = () => {
     email: '',
     message: ''
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formState.name && formState.phone) {
-      // Fake success state for now
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormState({ name: '', phone: '', email: '', message: '' });
-      }, 5000);
+    
+    // Validation
+    const newErrors = {};
+    if (!formState.name.trim()) newErrors.name = 'Name is required';
+    if (!formState.phone.trim()) newErrors.phone = 'Phone / WhatsApp is required';
+    if (!formState.message.trim()) newErrors.message = 'Please tell us about your stay';
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
     }
+    
+    setErrors({});
+
+    // WhatsApp Message Format
+    const text = `Hi Fusion Asiana,
+
+I would like to enquire about staying at Fusion Asiana.
+
+Name: ${formState.name}
+Phone / WhatsApp: ${formState.phone}
+Email: ${formState.email || "Not provided"}
+
+Message:
+${formState.message}
+
+Thank you.`;
+
+    const encodedText = encodeURIComponent(text);
+    const whatsappUrl = `https://wa.me/919954587204?text=${encodedText}`;
+    
+    window.open(whatsappUrl, '_blank');
   };
 
   const handleChange = (e) => {
@@ -28,6 +53,13 @@ const ContactPage = () => {
       ...formState,
       [e.target.name]: e.target.value
     });
+    
+    if (errors[e.target.name]) {
+      setErrors({
+        ...errors,
+        [e.target.name]: ''
+      });
+    }
   };
 
   return (
@@ -112,73 +144,69 @@ const ContactPage = () => {
             <div className={styles.formCard}>
               <span className={styles.formEyebrow}>YOUR DETAILS</span>
               
-              {isSubmitted ? (
-                <div className={styles.successMessage}>
-                  <div className={styles.successIcon}>✓</div>
-                  <h3>Thank You!</h3>
-                  <p>Your enquiry has been received. We'll get back to you shortly.</p>
+              <form onSubmit={handleSubmit} className={styles.form} noValidate>
+                
+                <div className={styles.inputGroup}>
+                  <label htmlFor="name">YOUR NAME</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="Full name" 
+                    value={formState.name}
+                    onChange={handleChange}
+                    className={errors.name ? styles.inputError : ''}
+                  />
+                  {errors.name && <span className={styles.errorText}>{errors.name}</span>}
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className={styles.form}>
-                  
-                  <div className={styles.inputGroup}>
-                    <label htmlFor="name">YOUR NAME</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      name="name" 
-                      placeholder="Full name" 
-                      required 
-                      value={formState.name}
-                      onChange={handleChange}
-                    />
-                  </div>
 
-                  <div className={styles.inputGroup}>
-                    <label htmlFor="phone">PHONE / WHATSAPP</label>
-                    <input 
-                      type="tel" 
-                      id="phone" 
-                      name="phone" 
-                      placeholder="+91 ..." 
-                      required 
-                      value={formState.phone}
-                      onChange={handleChange}
-                    />
-                  </div>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="phone">PHONE / WHATSAPP</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    placeholder="+91 ..." 
+                    value={formState.phone}
+                    onChange={handleChange}
+                    className={errors.phone ? styles.inputError : ''}
+                  />
+                  {errors.phone && <span className={styles.errorText}>{errors.phone}</span>}
+                </div>
 
-                  <div className={styles.inputGroup}>
-                    <label htmlFor="email">EMAIL <span className={styles.optional}>(Optional)</span></label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      name="email" 
-                      placeholder="you@email.com" 
-                      value={formState.email}
-                      onChange={handleChange}
-                    />
-                  </div>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="email">EMAIL <span className={styles.optional}>(Optional)</span></label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="you@email.com" 
+                    value={formState.email}
+                    onChange={handleChange}
+                  />
+                </div>
 
-                  <div className={styles.inputGroup}>
-                    <label htmlFor="message">TELL US ABOUT YOUR STAY</label>
-                    <textarea 
-                      id="message" 
-                      name="message" 
-                      placeholder="Tell us about your stay, preferred dates, number of guests, or anything you would like to know..." 
-                      rows="4"
-                      value={formState.message}
-                      onChange={handleChange}
-                    ></textarea>
-                  </div>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="message">TELL US ABOUT YOUR STAY</label>
+                  <textarea 
+                    id="message" 
+                    name="message" 
+                    placeholder="Tell us about your stay, preferred dates, number of guests, or anything you would like to know..." 
+                    rows="4"
+                    value={formState.message}
+                    onChange={handleChange}
+                    className={errors.message ? styles.inputError : ''}
+                  ></textarea>
+                  {errors.message && <span className={styles.errorText}>{errors.message}</span>}
+                </div>
 
-                  <button type="submit" className={styles.submitBtn}>
-                    SEND ENQUIRY &rarr;
-                  </button>
-                  <p className={styles.formNote}>
-                    Your enquiry goes directly to Fusion Asiana. We’ll get back to you as soon as possible.
-                  </p>
-                </form>
-              )}
+                <button type="submit" className={styles.submitBtn}>
+                  SEND ENQUIRY &rarr;
+                </button>
+                <p className={styles.formNote}>
+                  Your enquiry goes directly to Fusion Asiana. We’ll get back to you as soon as possible.
+                </p>
+              </form>
             </div>
           </div>
           

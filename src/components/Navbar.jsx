@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu } from 'lucide-react';
+import gsap from 'gsap';
 import styles from './Navbar.module.css';
 import MobileMenu from './MobileMenu';
 import { useBookingModal } from '../context/BookingContext';
@@ -8,6 +9,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { openModal } = useBookingModal();
+  const navRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,9 +19,25 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReducedMotion && navRef.current) {
+        gsap.from(navRef.current, {
+          opacity: 0,
+          y: -20,
+          duration: 0.8,
+          ease: 'power3.out',
+          clearProps: 'all'
+        });
+      }
+    });
+    return () => ctx.revert();
+  }, []);
+
   return (
     <>
-      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+      <nav ref={navRef} className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.navbarInner}>
           <div className={styles.logo}>FUSION ASIANA</div>
           
