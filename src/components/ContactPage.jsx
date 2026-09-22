@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, MessageCircle, MapPin } from 'lucide-react';
+import SEO from './SEO';
 import styles from './ContactPage.module.css';
 
 const ContactPage = () => {
@@ -64,6 +65,11 @@ Thank you.`;
 
   return (
     <div className={styles.pageWrapper}>
+      <SEO 
+        title="Contact Fusion Asiana | Dibrugarh Homestay"
+        description="Contact Fusion Asiana in Chowkidingee, Dibrugarh for room enquiries, stay information and booking assistance by phone or WhatsApp."
+        path="/contact"
+      />
       <div className={`section-container ${styles.container}`}>
         
         <div className={styles.topContent}>

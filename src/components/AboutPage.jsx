@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
+import SEO from './SEO';
 import styles from './AboutPage.module.css';
 import { useBookingModal } from '../context/BookingContext';
 
@@ -12,13 +13,6 @@ const AboutPage = () => {
   useEffect(() => {
     // Scroll to top instantly
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-
-    // SEO updates
-    document.title = "About Fusion Asiana | A Homely Stay in Dibrugarh";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Fusion Asiana is a thoughtfully designed homestay in Chowkidingee, Dibrugarh, created for guests who want the comfort of a home while staying close to the city.");
-    }
   }, []);
 
   useEffect(() => {
@@ -95,6 +89,11 @@ const AboutPage = () => {
 
   return (
     <div className={styles.aboutPage} ref={pageRef}>
+      <SEO 
+        title="About Fusion Asiana | Homestay in Dibrugarh"
+        description="Learn about Fusion Asiana, a thoughtfully designed homestay in Chowkidingee, Dibrugarh, created for a comfortable and welcoming stay close to the city."
+        path="/about"
+      />
       {/* Hero Section */}
       <section className={`${styles.heroSection} section-container`}>
         <div className={styles.heroGrid}>

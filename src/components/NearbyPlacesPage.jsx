@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ArrowUpRight } from 'lucide-react';
 import { nearbyPlacesData } from '../data/nearbyPlaces';
 import ImageSlot from './ImageSlot';
+import SEO from './SEO';
 import styles from './NearbyPlacesPage.module.css';
 
 // The Scallop Edge SVG to create the transition
@@ -65,13 +66,6 @@ const NearbyPlacesPage = () => {
   useEffect(() => {
     // Scroll to top instantly
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-
-    // SEO updates
-    document.title = "Nearby Places | Fusion Asiana | Dibrugarh";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Explore the places, landscapes and local experiences that make Dibrugarh worth discovering.");
-    }
   }, []);
 
   // Animations
@@ -105,6 +99,11 @@ const NearbyPlacesPage = () => {
 
   return (
     <div className={styles.pageContainer} ref={pageRef}>
+      <SEO 
+        title="Nearby Places in Dibrugarh | Explore from Fusion Asiana"
+        description="Explore nearby places and experiences around Dibrugarh while staying at Fusion Asiana in Chowkidingee, Assam."
+        path="/nearby-places"
+      />
       <header className={`${styles.header} section-container`}>
         <div className={styles.headerInner}>
           <span className={`eyebrow header-anim ${styles.eyebrow}`}>NEARBY PLACES</span>

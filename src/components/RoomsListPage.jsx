@@ -3,6 +3,7 @@ import { ArrowRight, Users } from 'lucide-react';
 import gsap from 'gsap';
 import { roomsData } from '../data/rooms';
 import ImageSlot from './ImageSlot';
+import SEO from './SEO';
 import styles from './RoomsListPage.module.css';
 
 const RoomsListPage = () => {
@@ -20,6 +21,11 @@ const RoomsListPage = () => {
 
   return (
     <div className={styles.pageWrapper} ref={pageRef}>
+      <SEO 
+        title="Rooms at Fusion Asiana | Homestay in Dibrugarh"
+        description="Explore the rooms at Fusion Asiana in Chowkidingee, Dibrugarh. Discover comfortable accommodation and essential amenities for your stay."
+        path="/rooms"
+      />
       <div className={styles.container}>
         
         <div className={styles.header}>
@@ -33,7 +39,7 @@ const RoomsListPage = () => {
               <div className={styles.imageWrapper}>
                 <ImageSlot 
                   id={room.images[0]} 
-                  alt={room.name}
+                  alt={`${room.name} at Fusion Asiana Homestay in Dibrugarh`}
                   aspectRatio="16/10"
                   overlay={false}
                 />

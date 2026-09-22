@@ -5,6 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { roomsData } from '../data/rooms';
 import RoomCarousel from './RoomCarousel';
 import ImageSlot from './ImageSlot';
+import SEO from './SEO';
+import NotFoundPage from './NotFoundPage';
 import styles from './RoomDetailPage.module.css';
 import { useBookingModal } from '../context/BookingContext';
 
@@ -50,10 +52,39 @@ const RoomDetailPage = ({ roomId }) => {
     }
   }, [roomId]);
 
-  if (!room) return <div className={styles.pageWrapper}>Room not found</div>;
+  if (!room) return <NotFoundPage />;
 
   return (
     <div className={styles.pageWrapper} ref={pageRef}>
+      <SEO 
+        title={`${room.name} at Fusion Asiana | Stay in Dibrugarh`}
+        description={`Explore ${room.name} at Fusion Asiana in Chowkidingee, Dibrugarh, with air conditioning, WiFi, an attached bathroom and essential stay amenities.`}
+        path={`/rooms/${room.id}`}
+        ogImage={room.images[0]}
+        schema={{
+          "@type": "HotelRoom",
+          "name": room.name,
+          "description": room.description,
+          "bed": {
+            "@type": "BedDetails",
+            "numberOfBeds": 1
+          },
+          "occupancy": {
+            "@type": "QuantitativeValue",
+            "value": parseInt(room.capacity) || 2
+          },
+          "amenityFeature": commonAmenities.map(amenity => ({
+            "@type": "LocationFeatureSpecification",
+            "name": amenity.name,
+            "value": true
+          })),
+          "offers": {
+            "@type": "Offer",
+            "price": room.price,
+            "priceCurrency": "INR"
+          }
+        }}
+      />
       {/* Subtle dashed route curve in background */}
       <svg className={styles.bgCurve} viewBox="0 0 1200 200" preserveAspectRatio="xMidYMid slice">
         <path 
@@ -126,7 +157,7 @@ const RoomDetailPage = ({ roomId }) => {
             <div className={styles.exploreImage}>
               <ImageSlot 
                 id={otherRoom.images[0]} 
-                alt={otherRoom.name}
+                alt={`${otherRoom.name} at Fusion Asiana Homestay in Dibrugarh`}
                 aspectRatio="16/10"
                 overlay={false}
               />

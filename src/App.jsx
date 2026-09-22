@@ -18,8 +18,10 @@ import RoomDetailPage from './components/RoomDetailPage';
 import RoomsListPage from './components/RoomsListPage';
 import AboutPage from './components/AboutPage';
 import NearbyPlacesPage from './components/NearbyPlacesPage';
+import NotFoundPage from './components/NotFoundPage';
 import { BookingProvider } from './context/BookingContext';
 import BookYourStayModal from './components/BookYourStayModal';
+import SEO from './components/SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,17 +73,46 @@ function App() {
   const isAboutPage = currentPath === '/about' || currentPath === '/about/';
   const isNearbyPlacesPage = currentPath === '/nearby-places' || currentPath === '/nearby-places/';
   const isContactPage = currentPath === '/contact' || currentPath === '/contact/';
+  const isHomePage = currentPath === '/' || currentPath === '';
+  const isKnownPage = isHomePage || isRoomDetailPage || isRoomsListPage || isAboutPage || isNearbyPlacesPage || isContactPage;
+
   const roomId = isRoomDetailPage ? currentPath.split('/').pop() : null;
 
   return (
     <BookingProvider>
       <div className="texture-bg"></div>
+      
+      {/* Homepage SEO */}
+      {isHomePage && (
+        <SEO 
+          title="Fusion Asiana | Homestay in Dibrugarh, Assam"
+          description="Stay at Fusion Asiana, a professionally managed homestay in Chowkidingee, Dibrugarh, Assam. Explore comfortable rooms and plan your stay in the heart of the city."
+          path="/"
+          schema={{
+            "@type": "LodgingBusiness",
+            "name": "Fusion Asiana",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Dibrugarh",
+              "addressRegion": "Assam",
+              "addressCountry": "IN"
+            },
+            "telephone": "+919954587204",
+            "sameAs": [
+              "https://www.instagram.com/home_by_fusion_asiana/"
+            ]
+          }}
+        />
+      )}
+
       <Navbar />
       
-      {(!isRoomDetailPage && !isRoomsListPage && !isContactPage && !isAboutPage && !isNearbyPlacesPage) && <Hero />}
+      {isHomePage && <Hero />}
       
-      <main className={`content-layer ${(!isRoomDetailPage && !isRoomsListPage && !isContactPage && !isAboutPage && !isNearbyPlacesPage) ? 'homepage-layer' : ''}`}>
-        {isRoomDetailPage ? (
+      <main className={`content-layer ${isHomePage ? 'homepage-layer' : ''}`}>
+        {!isKnownPage ? (
+          <NotFoundPage />
+        ) : isRoomDetailPage ? (
           <RoomDetailPage roomId={roomId} />
         ) : isRoomsListPage ? (
           <RoomsListPage />
